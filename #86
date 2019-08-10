@@ -1,0 +1,30 @@
+#After a lot of on-paper math, I found that L=a^2+b^2+c^2+2ab (or (a+b)^2+c^2), where a and b are the smallest two numbers. 
+#If this number is a square number, the length is an interger. 
+#As c increases, all previous solutions exist, so new solutions must involve c^2. 
+#We are looking for how numbers d=a+b (which could be less than or greater than c) which forms a pythagorean triplet with c. 
+#1<d<2c 
+
+import time
+start_time=time.time()
+
+
+M=1000000
+
+TotalSolutions=0
+c=1
+while TotalSolutions<M:
+  for d in range(2,2*c):
+    #d=a+b, where a,b<c
+    n=c**2+d**2
+    if n**.5==int(n**.5):
+      if d<c:
+        TotalSolutions+=int(d/2)
+        #number of ways two numbers less than c can add to d
+      else:
+        TotalSolutions+=c+1-int((d+1)/2)
+        #number of ways two numbers less than ce can add to d
+  c+=1
+print(c-1,TotalSolutions)
+
+
+print(time.time()-start_time)
